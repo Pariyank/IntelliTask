@@ -1,15 +1,18 @@
 IntelliTask | AI-Powered Project Management Ecosystem
+
 Hey there! Welcome to IntelliTask.
 I built this project during my final year because I realized that most project management tools are either too bloated or too simple. I wanted to build something "Linear-level" sleek, but with a backbone of strict Role-Based Access Control (RBAC) and actual AI-driven analytics.
 This is a full-stack MERN application that handles the entire project lifecycle—from high-level system governance by an Admin to task execution by a Team Member.
 
 Demo & Experience
+
 Note: The UI is designed with a Deep Dark Theme (Glassmorphism). I used Framer Motion for all page transitions to ensure that "Premium SaaS" feel.
 Frontend: Hosted on Firebase
 Backend: Hosted on Render
 Database: MongoDB Atlas
 
 Key Features (What makes it special?)
+
 🔐 1. The "Triple-Lock" Auth System
 I didn't just go with a basic login. IntelliTask features:
 Role Selection Gate: You choose your path before you authenticate.
