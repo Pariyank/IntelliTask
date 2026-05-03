@@ -18,11 +18,13 @@ I didn't just go with a basic login. IntelliTask features:
 Role Selection Gate: You choose your path before you authenticate.
 Role-Lock Logic: If you're registered as a Manager, you can't "hijack" an Admin session. The backend checks your MongoDB record against your requested role and will block you with a 403 Forbidden if they don't match.
 Secure Admin Portal: A hidden gateway for the system owner. Google Login is disabled for Admin to prevent unauthorized entry; only a pre-seeded Master ID/Password works.
+
 🤖 2. Llama AI Integration
 Instead of just showing static charts, I built a simulation of Llama AI Intelligence.
 It analyzes your team's velocity.
 It detects bottlenecks (e.g., if too many tasks are stuck in "In Progress").
 It provides custom "Member Recommendations" to build work momentum.
+
 📊 3. Role-Based Command Centers
 Each role gets a completely different sidebar and set of tools:
 Admin: "Authority Console"—purely for managing people. Adding/Deleting Managers and Members.
