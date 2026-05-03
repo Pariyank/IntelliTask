@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
+import { API_URL } from '../../context/AuthContext';
 import { Users, Trash2, Mail, CheckCircle, ShieldAlert, UserCheck } from 'lucide-react';
 
 export default function TeamView() {
@@ -11,7 +12,7 @@ export default function TeamView() {
   const fetchUsers = async () => {
     try {
     
-      const res = await axios.get('http://localhost:5000/api/admin/users');
+      const res = await axios.get('${API_URL}/admin/users');
       setUsers(res.data);
     } catch (err) {
       console.error("Error fetching users", err);
@@ -31,7 +32,7 @@ export default function TeamView() {
 
   const handleRoleChange = async (userId, newRole) => {
     try {
-      await axios.post('http://localhost:5000/api/admin/update-role', { userId, newRole });
+      await axios.post('${API_URL}/admin/update-role', { userId, newRole });
       fetchUsers();
     } catch (err) {
       alert("Unauthorized: Only Admins can modify permissions.");
@@ -40,7 +41,7 @@ export default function TeamView() {
 
   const deleteUser = async (id) => {
     if (window.confirm("CRITICAL: Permanent removal of this user?")) {
-      await axios.delete(`http://localhost:5000/api/admin/users/${id}`);
+      await axios.delete(`${API_URL}/admin/users/${id}`);
       fetchUsers();
     }
   };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../../context/AuthContext';
 import axios from 'axios';
 import { CheckCircle2, Clock, AlertCircle, Zap, Send, Loader2 } from 'lucide-react';
 
@@ -8,7 +9,7 @@ export default function MemberView() {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/tasks/my-tasks');
+      const res = await axios.get('${API_URL}/tasks/my-tasks');
       setTasks(res.data);
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
@@ -18,7 +19,7 @@ export default function MemberView() {
 
   const updateStatus = async (taskId, current) => {
     const next = current === 'To Do' ? 'In Progress' : 'Done';
-    await axios.patch(`http://localhost:5000/api/tasks/${taskId}/status`, { status: next });
+    await axios.patch(`${API_URL}/tasks/${taskId}/status`, { status: next });
     fetchTasks();
   };
 

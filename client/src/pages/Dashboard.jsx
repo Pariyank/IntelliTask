@@ -6,7 +6,6 @@ import {
   Settings, LogOut, ShieldCheck, Loader2, Menu, ChevronLeft, Zap
 } from 'lucide-react';
 
-// Sub-Views
 import AdminView from './dashboards/AdminView';
 import Overview from './dashboards/Overview';
 import ProjectHub from './dashboards/ProjectHub';

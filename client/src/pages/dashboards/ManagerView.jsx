@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../../context/AuthContext';
 import axios from 'axios';
 import { 
   Trophy, CheckCircle, Clock, AlertCircle, 
@@ -13,8 +14,8 @@ export default function ManagerView() {
   const fetchData = async () => {
     try {
       const [projRes, leaderRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/projects/manager-owned'),
-        axios.get('http://localhost:5000/api/analytics/team-performance')
+        axios.get('${API_URL}/projects/manager-owned'),
+        axios.get('${API_URL}/analytics/team-performance')
       ]);
       setProjects(projRes.data);
       setLeaderboard(leaderRes.data);
@@ -30,7 +31,7 @@ export default function ManagerView() {
   const handleApproval = async (id, decision) => {
     try {
       const status = decision === 'approve' ? 'Completed' : 'Active';
-      await axios.patch(`http://localhost:5000/api/projects/${id}/review`, { status });
+      await axios.patch(`${API_URL}/projects/${id}/review`, { status });
       fetchData(); 
     } catch (err) {
       alert("Failed to update project.");

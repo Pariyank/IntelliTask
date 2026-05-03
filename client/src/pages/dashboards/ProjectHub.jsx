@@ -15,8 +15,8 @@ export default function ProjectHub() {
     try {
       const endpoint = user.role === 'Manager' ? 'manager-owned' : 'my-allocations';
       const [projRes, memberRes] = await Promise.all([
-        axios.get(`http://localhost:5000/api/projects/${endpoint}`),
-        user.role === 'Manager' ? axios.get('http://localhost:5000/api/admin/members-only') : Promise.resolve({ data: [] })
+        axios.get(`${API_URL}/projects/${endpoint}`),
+        user.role === 'Manager' ? axios.get('${API_URL}/admin/members-only') : Promise.resolve({ data: [] })
       ]);
       setProjects(projRes.data);
       setMembers(memberRes.data);
@@ -30,7 +30,7 @@ export default function ProjectHub() {
     e.preventDefault();
     try {
      
-      await axios.post('http://localhost:5000/api/projects', {
+      await axios.post('${API_URL}/projects', {
         ...form,
         members: [form.assignedMember] 
       });

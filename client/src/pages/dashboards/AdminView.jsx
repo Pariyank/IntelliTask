@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Users, Trash2, ShieldCheck, Mail, Loader2, Search } from 'lucide-react';
+import { API_URL } from '../../context/AuthContext';
 
 export default function AdminView() {
   const [users, setUsers] = useState([]);
@@ -9,7 +10,7 @@ export default function AdminView() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/users');
+      const res = await axios.get('${API_URL}/admin/users');
       setUsers(res.data);
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
@@ -19,7 +20,7 @@ export default function AdminView() {
 
   const deleteUser = async (id) => {
     if (window.confirm("Permanently remove this user?")) {
-      await axios.delete(`http://localhost:5000/api/admin/users/${id}`);
+      await axios.delete(`${API_URL}/admin/users/${id}`);
       fetchUsers();
     }
   };

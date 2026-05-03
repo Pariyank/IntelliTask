@@ -75,7 +75,7 @@ const KanbanBoard = ({ projectId, onFocusTask }) => {
   const fetchTasks = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/api/tasks/project/${projectId}`);
+      const res = await axios.get(`${API_URL}/tasks/project/${projectId}`);
       setTasks(res.data);
     } catch (err) {
       console.error("Error fetching tasks:", err);
@@ -90,7 +90,7 @@ const KanbanBoard = ({ projectId, onFocusTask }) => {
       setTasks(prev => prev.map(t => t._id === taskId ? { ...t, status: newStatus } : t));
       
   
-      await axios.patch(`http://localhost:5000/api/tasks/${taskId}/status`, { status: newStatus });
+      await axios.patch(`${API_URL}/tasks/${taskId}/status`, { status: newStatus });
     } catch (err) {
       console.error("Failed to move task:", err);
       fetchTasks(); // Revert on error

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../../context/AuthContext';
 import { 
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, 
   PieChart, Pie, Cell, AreaChart, Area 
@@ -20,8 +21,8 @@ export default function AnalyticsView() {
 
   useEffect(() => {
     const endpoint = user.role === 'Manager' 
-      ? 'http://localhost:5000/api/analytics/manager-stats' 
-      : 'http://localhost:5000/api/analytics/member-productivity';
+      ? '${API_URL}/analytics/manager-stats' 
+      : '${API_URL}/analytics/member-productivity';
 
     axios.get(endpoint)
       .then(res => setData(res.data))

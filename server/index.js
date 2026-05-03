@@ -11,7 +11,14 @@ const adminRoutes = require('./routes/adminRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: ["https://intelliitask.web.app", "https://intelliitask.firebaseapp.com"],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-user-role"]
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
@@ -28,6 +35,9 @@ app.post('/api/ai/generate-insights', require('./middleware/authMiddleware').pro
   res.json({ insight });
 });
 
+app.get("/", (req, res) => res.send("IntelliTask API is Live"));
+
 mongoose.connect(process.env.MONGO_URI).then(() => {
-  app.listen(5000, () => console.log("🚀 IntelliTask Server: 5000 | DB: Connected"));
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, '0.0.0.0', () => console.log(`🚀 Production Server Live`));
 });  

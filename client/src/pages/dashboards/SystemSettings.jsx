@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../../context/AuthContext';
 import axios from 'axios';
 import { ShieldCheck, Megaphone, Activity, Database, Server, Loader2, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -9,7 +10,7 @@ export default function SystemSettings() {
   const [loading, setLoading] = useState(false);
 
   const fetchHealth = async () => {
-    const res = await axios.get('http://localhost:5000/api/admin/health');
+    const res = await axios.get('${API_URL}/admin/health');
     setHealth(res.data);
   };
 
@@ -19,7 +20,7 @@ export default function SystemSettings() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/admin/broadcast', { message: broadcast });
+      await axios.post('${API_URL}/admin/broadcast', { message: broadcast });
       alert("Announcement broadcasted to all users.");
       setBroadcast('');
     } catch (err) {

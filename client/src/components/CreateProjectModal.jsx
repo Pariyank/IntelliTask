@@ -10,7 +10,7 @@ const CreateProjectModal = ({ isOpen, onClose, onRefresh }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/projects', { name, description, members: [] });
+      await axios.post('${API_URL}/projects', { name, description, members: [] });
       onRefresh();
       onClose();
       setName('');
