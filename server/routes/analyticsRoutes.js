@@ -1,10 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { getTeamPerformance } = require('../controllers/analyticsController');
 const { protect } = require('../middleware/authMiddleware');
 
-router.get('/team-performance', protect, getTeamPerformance);
+const { 
+  getManagerAnalytics, 
+  getMemberProductivity, 
+  getTeamPerformance 
+} = require('../controllers/analyticsController');
+
 router.get('/manager-stats', protect, getManagerAnalytics);
+
 router.get('/member-productivity', protect, getMemberProductivity);
+
+router.get('/team-performance', protect, getTeamPerformance);
 
 module.exports = router;

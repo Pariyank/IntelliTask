@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { Plus, Folder, X, Clock, UserPlus, Loader2 } from 'lucide-react';
+import { API_URL } from '../../context/AuthContext';
 
 export default function ProjectHub() {
   const { user } = useAuth();
